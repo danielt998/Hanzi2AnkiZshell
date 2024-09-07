@@ -9,18 +9,14 @@ cat cedict_ts.u8| while read line; do
 done
 
 printCsv() {
-    simp=""
-    pinyin=""
-    english=""
     regex='^([^ ]*) ([^ ]*) \[([a-zA-ZÜü0-9 ]+)\] (.*)'
- 
     if [[ $1 =~ $regex ]]; then
         simp=$match[1]
         pinyin=$match[3]
         english=$match[4]
+        echo "${simp}\t${pinyin}\t${english}"
     else return
     fi 
-    echo "${simp}\t${pinyin}\t${english}"
 }
 
 input_text=$(tee)
